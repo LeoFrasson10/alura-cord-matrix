@@ -1,26 +1,14 @@
-import GlobalStyle from "../styles/global";
+import { useState } from "react";
 import Titulo from "../components/Title";
 import { Box, Button, Text, TextField, Image } from "@skynexui/components";
+import { useRouter } from "next/router";
 import appConfig from "../config.json";
 
-// function HomePage() {
-//   return (
-//     <div>
-//       <GlobalStyle />
-//       <h1>Boas vindas de volta!</h1>
-//       <h2>Discord - Alura Matrix</h2>
-//     </div>
-//   );
-// }
-
-// export default HomePage;
-
 export default function PaginaInicial() {
-  const username = "leofrasson10";
-
+  const [username, setUsername] = useState("leofrasson10");
+  const navigate = useRouter();
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: "flex",
@@ -55,6 +43,10 @@ export default function PaginaInicial() {
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              navigate.push("/chat");
+            }}
             styleSheet={{
               display: "flex",
               flexDirection: "column",
@@ -78,6 +70,8 @@ export default function PaginaInicial() {
 
             <TextField
               fullWidth
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               textFieldColors={{
                 neutral: {
                   textColor: appConfig.theme.colors.neutrals[200],
@@ -91,7 +85,7 @@ export default function PaginaInicial() {
               type="submit"
               label="Entrar"
               fullWidth
-              disabled
+              disabled={!username}
               buttonColors={{
                 contrastColor: appConfig.theme.colors.neutrals["000"],
                 mainColor: appConfig.theme.colors.primary[500],
@@ -123,7 +117,7 @@ export default function PaginaInicial() {
                 borderRadius: "50%",
                 marginBottom: "16px",
               }}
-              src={`https://github.com/${username}.png`}
+              src={`https://github.com/${username || "github"}.png`}
             />
             <Text
               variant="body4"
@@ -134,7 +128,7 @@ export default function PaginaInicial() {
                 borderRadius: "1000px",
               }}
             >
-              {username}
+              {username || "github"}
             </Text>
           </Box>
           {/* Photo Area */}
