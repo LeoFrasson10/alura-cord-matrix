@@ -17,7 +17,7 @@ import {
 } from "../styles/pages/index.js";
 
 export default function PaginaInicial() {
-  const [username, setUsername] = useState("leofrasson10");
+  const [username, setUsername] = useState("");
   const navigate = useRouter();
 
   return (
@@ -50,21 +50,24 @@ export default function PaginaInicial() {
               type="submit"
               label="Entrar"
               fullWidth
-              disabled={!username}
+              disabled={!username || username.length < 2}
               buttonColors={buttonColors}
             />
           </Box>
           {/* Formulário */}
-
           {/* Photo Area */}
           <Box styleSheet={boxImageContainer}>
-            <Image
-              styleSheet={image}
-              src={`https://github.com/${username || "github"}.png`}
-            />
-            <Text variant="body4" styleSheet={textUserName}>
-              {username || "github"}
-            </Text>
+            {username.length >= 2 && (
+              <>
+                <Image
+                  styleSheet={image}
+                  src={`https://github.com/${username || "github"}.png`}
+                />
+                <Text variant="body4" styleSheet={textUserName}>
+                  {username || "github"}
+                </Text>
+              </>
+            )}
           </Box>
           {/* Photo Area */}
         </Box>
