@@ -49,6 +49,6 @@ export const textFieldChat = {
   borderRadius: "5px",
   padding: "8px 8px",
   backgroundColor: appConfig.theme.colors.neutrals[800],
-
+  marginRight: "8px",
   color: appConfig.theme.colors.neutrals[200],
 };

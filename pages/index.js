@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Titulo from "../components/Title";
+import Titulo from "../src/components/Title";
 import { Box, Button, Text, TextField, Image } from "@skynexui/components";
 import { useRouter } from "next/router";
 import appConfig from "../config.json";
@@ -19,6 +19,7 @@ import {
 export default function PaginaInicial() {
   const [username, setUsername] = useState("leofrasson10");
   const navigate = useRouter();
+
   return (
     <>
       <Box styleSheet={boxContainer}>
@@ -28,7 +29,7 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={(e) => {
               e.preventDefault();
-              navigate.push("/chat");
+              navigate.push(`/chat?username=${username}`);
             }}
             styleSheet={boxForm}
           >

@@ -1,4 +1,4 @@
-import appConfig from "../../config.json";
+import appConfig from "../../../config.json";
 
 export const boxContainer = {
   overflow: "auto",
